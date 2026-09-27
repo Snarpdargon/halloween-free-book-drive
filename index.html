@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Halloween Free Book Drive</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<header class="app-header">
+
+    <div class="header-content">
+
+        <div class="logo">
+            🎃
+        </div>
+
+        <div>
+
+            <h1>
+                Halloween Free Book Drive
+            </h1>
+
+            <p>
+                Take a book. Share a little magic.
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div>
+
+            <span class="eyebrow">
+                ✦ FREE BOOK DRIVE ✦
+            </span>
+
+            <h2>
+                Find a spooky story
+                <span>to take home.</span>
+            </h2>
+
+            <p>
+                Choose any available book for free.
+                You may also leave a short note about
+                the book you chose.
+            </p>
+
+            <button
+                class="primary-button"
+                onclick="scrollToBooks()"
+            >
+                📚 Browse Books
+            </button>
+
+        </div>
+
+
+        <div class="hero-icon">
+            🎃
+        </div>
+
+    </section>
+
+
+    <!-- BOOKS -->
+
+    <section
+        id="books-section"
+        class="books-section"
+    >
+
+        <div class="section-heading">
+
+            <span>
+                ✦ AVAILABLE BOOKS
+            </span>
+
+            <h2>
+                Choose a Book
+            </h2>
+
+            <p>
+                All books are free to take.
+            </p>
+
+        </div>
+
+
+        <div
+            id="book-list"
+            class="book-grid"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- TAKEN BOOKS -->
+
+    <section class="taken-section">
+
+        <div class="section-heading">
+
+            <span>
+                ✦ YOUR BOOKS
+            </span>
+
+            <h2>
+                Books You've Taken
+            </h2>
+
+        </div>
+
+
+        <div
+            id="taken-books"
+            class="taken-list"
+        >
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- BOOK MODAL -->
+
+<div
+    id="book-modal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="close-button"
+            onclick="closeModal()"
+        >
+            ✕
+        </button>
+
+
+        <div class="modal-icon">
+            📖
+        </div>
+
+
+        <h2 id="modal-title">
+            Book Title
+        </h2>
+
+
+        <p id="modal-author">
+            Author
+        </p>
+
+
+        <p id="modal-description">
+            Description
+        </p>
+
+
+        <label for="book-note">
+
+            Optional Note
+
+        </label>
+
+
+        <textarea
+            id="book-note"
+            placeholder="Write something about the book..."
+            rows="4"
+        ></textarea>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="primary-button"
+                onclick="takeBook()"
+            >
+                🎃 Take This Book
+            </button>
+
+
+            <button
+                class="secondary-button"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SUCCESS MESSAGE -->
+
+<div
+    id="success-message"
+    class="success-message hidden"
+>
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            🎃
+        </div>
+
+        <h2>
+            Book Taken!
+        </h2>
+
+        <p id="success-text">
+            Enjoy your spooky read!
+        </p>
+
+        <button
+            class="primary-button"
+            onclick="closeSuccess()"
+        >
+            Wonderful!
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        🎃 Halloween Free Book Drive
+    </p>
+
+    <small>
+        Take a book. Leave a little magic.
+    </small>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
