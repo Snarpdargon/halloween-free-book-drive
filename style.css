@@ -911,3 +911,44 @@ footer small {
     }
 
 }
+
+
+/* ==========================================
+   LOCAL STORAGE TEXT FIX
+========================================== */
+
+.storage-card ion-card-header {
+    display: block;
+    padding: 20px;
+}
+
+.storage-card ion-card-title {
+    display: block;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    color: #42224f;
+
+    margin: 0 0 5px 0;
+}
+
+.storage-card ion-card-subtitle {
+    display: block;
+
+    font-size: 0.95rem;
+
+    color: #765f6d;
+
+    margin: 0;
+}
+
+.storage-card ion-card-content {
+    color: #765f6d;
+}
+
+.storage-card ion-card-content p {
+    color: #765f6d;
+
+    margin-bottom: 20px;
+}
