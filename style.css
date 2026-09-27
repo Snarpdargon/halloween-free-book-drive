@@ -762,37 +762,26 @@ ion-button {
 ============================== */
 
 footer {
-
-    position: static;
-
-    width: 100%;
-
     background: #42224f;
-
     color: #ead7e9;
 
     text-align: center;
 
     padding: 30px;
 
-    margin-top: 40px;
+    width: 100%;
+
+    position: static;
 }
 
-
 footer p {
-
     color: #ead7e9;
-
     margin: 0;
 }
 
-
 footer small {
-
     display: block;
-
     margin-top: 5px;
-
     color: #ead7e9;
 }
 
