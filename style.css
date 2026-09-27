@@ -38,6 +38,10 @@ body {
 
 }
 
+html,
+body {
+    min-height: 100%;
+}
 
 /* ==========================================
    IONIC COLOR OVERRIDES
