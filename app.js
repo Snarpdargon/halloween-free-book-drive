@@ -3,7 +3,9 @@
 // ==========================================
 
 
-// Available books
+// ==========================================
+// AVAILABLE BOOKS
+// ==========================================
 
 const books = [
 
@@ -58,7 +60,9 @@ const books = [
 ];
 
 
-// Currently selected book
+// ==========================================
+// APPLICATION STATE
+// ==========================================
 
 let selectedBook = null;
 
@@ -67,10 +71,14 @@ let selectedBook = null;
 // LOCAL STORAGE
 // ==========================================
 
+const STORAGE_KEY = "halloweenBookDriveSelections";
+
+
 function getTakenBooks() {
 
     const saved =
-        localStorage.getItem("takenBooks");
+        localStorage.getItem(STORAGE_KEY);
+
 
     if (!saved) {
 
@@ -78,14 +86,29 @@ function getTakenBooks() {
 
     }
 
-    return JSON.parse(saved);
+
+    try {
+
+        return JSON.parse(saved);
+
+    } catch (error) {
+
+        console.error(
+            "Unable to read saved books:",
+            error
+        );
+
+        return [];
+
+    }
+
 }
 
 
 function saveTakenBooks(takenBooks) {
 
     localStorage.setItem(
-        "takenBooks",
+        STORAGE_KEY,
         JSON.stringify(takenBooks)
     );
 
@@ -101,6 +124,14 @@ function displayBooks() {
     const bookList =
         document.getElementById("book-list");
 
+
+    if (!bookList) {
+
+        return;
+
+    }
+
+
     const takenBooks =
         getTakenBooks();
 
@@ -112,12 +143,14 @@ function displayBooks() {
 
         const alreadyTaken =
             takenBooks.some(
-                item => item.bookId === book.id
+                item =>
+                    item.bookId === book.id
             );
 
 
         const card =
-            document.createElement("article");
+            document.createElement("ion-card");
+
 
         card.className =
             "book-card";
@@ -129,33 +162,55 @@ function displayBooks() {
                 📖
             </div>
 
-            <span class="available-badge">
-                ${alreadyTaken
-                    ? "Already Taken"
-                    : "FREE TO TAKE"}
-            </span>
+            <ion-card-header>
 
-            <h3>
-                ${book.title}
-            </h3>
+                <span class="available-badge">
 
-            <p class="book-author">
-                ${book.author}
-            </p>
+                    ${
+                        alreadyTaken
+                            ? "Already Taken"
+                            : "FREE TO TAKE"
+                    }
 
-            <p class="book-description">
-                ${book.description}
-            </p>
+                </span>
 
-            <button
-                class="primary-button"
-                ${alreadyTaken ? "disabled" : ""}
-                onclick="openBook(${book.id})"
-            >
-                ${alreadyTaken
-                    ? "Book Taken"
-                    : "🎃 Take This Book"}
-            </button>
+                <ion-card-title>
+                    ${book.title}
+                </ion-card-title>
+
+                <ion-card-subtitle>
+                    ${book.author}
+                </ion-card-subtitle>
+
+            </ion-card-header>
+
+
+            <ion-card-content>
+
+                <p class="book-description">
+                    ${book.description}
+                </p>
+
+
+                <ion-button
+                    expand="block"
+                    ${
+                        alreadyTaken
+                            ? "disabled"
+                            : ""
+                    }
+                    onclick="openBook(${book.id})"
+                >
+
+                    ${
+                        alreadyTaken
+                            ? "Book Taken"
+                            : "🎃 Take This Book"
+                    }
+
+                </ion-button>
+
+            </ion-card-content>
 
         `;
 
@@ -168,10 +223,10 @@ function displayBooks() {
 
 
 // ==========================================
-// OPEN BOOK
+// OPEN BOOK MODAL
 // ==========================================
 
-function openBook(bookId) {
+async function openBook(bookId) {
 
     const takenBooks =
         getTakenBooks();
@@ -179,7 +234,8 @@ function openBook(bookId) {
 
     const alreadyTaken =
         takenBooks.some(
-            item => item.bookId === bookId
+            item =>
+                item.bookId === bookId
         );
 
 
@@ -192,7 +248,8 @@ function openBook(bookId) {
 
     selectedBook =
         books.find(
-            book => book.id === bookId
+            book =>
+                book.id === bookId
         );
 
 
@@ -226,9 +283,13 @@ function openBook(bookId) {
     ).value = "";
 
 
-    document.getElementById(
-        "book-modal"
-    ).classList.remove("hidden");
+    const modal =
+        document.getElementById(
+            "book-modal"
+        );
+
+
+    await modal.present();
 
 }
 
@@ -237,7 +298,7 @@ function openBook(bookId) {
 // TAKE BOOK
 // ==========================================
 
-function takeBook() {
+async function takeBook() {
 
     if (!selectedBook) {
 
@@ -257,7 +318,21 @@ function takeBook() {
         getTakenBooks();
 
 
-    takenBooks.push({
+    const alreadyTaken =
+        takenBooks.some(
+            item =>
+                item.bookId === selectedBook.id
+        );
+
+
+    if (alreadyTaken) {
+
+        return;
+
+    }
+
+
+    const selection = {
 
         bookId:
             selectedBook.id,
@@ -272,34 +347,42 @@ function takeBook() {
             note,
 
         date:
-            new Date().toLocaleDateString()
+            new Date().toLocaleString(),
 
-    });
+        timestamp:
+            Date.now()
+
+    };
+
+
+    takenBooks.push(selection);
 
 
     saveTakenBooks(takenBooks);
 
 
-    closeModal();
-
-
-    document.getElementById(
-        "success-text"
-    ).textContent =
-        `"${selectedBook.title}" is now yours. Enjoy your spooky read!`;
-
-
-    document
-        .getElementById("success-message")
-        .classList.remove("hidden");
-
-
-    selectedBook = null;
+    await closeModal();
 
 
     displayBooks();
 
     displayTakenBooks();
+
+
+    const alert =
+        document.getElementById(
+            "success-message"
+        );
+
+
+    alert.message =
+        `"${selectedBook.title}" is now yours. Enjoy your spooky read!`;
+
+
+    await alert.present();
+
+
+    selectedBook = null;
 
 }
 
@@ -311,7 +394,16 @@ function takeBook() {
 function displayTakenBooks() {
 
     const container =
-        document.getElementById("taken-books");
+        document.getElementById(
+            "taken-books"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
 
 
     const takenBooks =
@@ -325,14 +417,18 @@ function displayTakenBooks() {
 
         container.innerHTML = `
 
-            <div class="taken-card">
+            <ion-card class="taken-card">
 
-                <p>
-                    🎃 You haven't taken a book yet.
-                    Choose a spooky story above!
-                </p>
+                <ion-card-content>
 
-            </div>
+                    <p>
+                        🎃 You haven't taken a book yet.
+                        Choose a spooky story above!
+                    </p>
+
+                </ion-card-content>
+
+            </ion-card>
 
         `;
 
@@ -344,7 +440,9 @@ function displayTakenBooks() {
     takenBooks.forEach(book => {
 
         const card =
-            document.createElement("div");
+            document.createElement(
+                "ion-card"
+            );
 
 
         card.className =
@@ -353,31 +451,53 @@ function displayTakenBooks() {
 
         card.innerHTML = `
 
-            <h3>
-                📖 ${book.title}
-            </h3>
+            <ion-card-header>
 
-            <p>
-                by ${book.author}
-            </p>
+                <ion-card-title>
+                    📖 ${book.title}
+                </ion-card-title>
 
-            <small>
-                Taken on ${book.date}
-            </small>
+                <ion-card-subtitle>
+                    by ${book.author}
+                </ion-card-subtitle>
 
-            ${
-                book.note
-                    ? `
-                        <div class="note">
-                            📝 ${book.note}
-                        </div>
-                    `
-                    : `
-                        <div class="note">
-                            No note was left for this book.
-                        </div>
-                    `
-            }
+            </ion-card-header>
+
+
+            <ion-card-content>
+
+                <small>
+                    Taken on ${book.date}
+                </small>
+
+
+                ${
+                    book.note
+
+                        ? `
+
+                            <div class="note">
+
+                                📝
+                                ${escapeHTML(book.note)}
+
+                            </div>
+
+                          `
+
+                        : `
+
+                            <div class="note">
+
+                                No note was left
+                                for this book.
+
+                            </div>
+
+                          `
+                }
+
+            </ion-card-content>
 
         `;
 
@@ -390,14 +510,38 @@ function displayTakenBooks() {
 
 
 // ==========================================
+// ESCAPE USER INPUT
+// ==========================================
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+// ==========================================
 // CLOSE MODAL
 // ==========================================
 
-function closeModal() {
+async function closeModal() {
 
-    document
-        .getElementById("book-modal")
-        .classList.add("hidden");
+    const modal =
+        document.getElementById(
+            "book-modal"
+        );
+
+
+    await modal.dismiss();
+
 
     selectedBook = null;
 
@@ -405,14 +549,71 @@ function closeModal() {
 
 
 // ==========================================
-// CLOSE SUCCESS
+// CLEAR LOCAL STORAGE
 // ==========================================
 
-function closeSuccess() {
+async function clearTakenBooks() {
+
+    const takenBooks =
+        getTakenBooks();
+
+
+    if (takenBooks.length === 0) {
+
+        return;
+
+    }
+
+
+    const alert =
+        document.createElement(
+            "ion-alert"
+        );
+
+
+    alert.header =
+        "Clear Saved Books?";
+
+
+    alert.message =
+        "This will remove all book selections and notes saved on this device.";
+
+
+    alert.buttons = [
+
+        {
+            text: "Cancel",
+            role: "cancel"
+        },
+
+        {
+            text: "Clear",
+            role: "destructive",
+
+            handler: () => {
+
+                localStorage.removeItem(
+                    STORAGE_KEY
+                );
+
+
+                displayBooks();
+
+                displayTakenBooks();
+
+            }
+
+        }
+
+    ];
+
 
     document
-        .getElementById("success-message")
-        .classList.add("hidden");
+        .querySelector("ion-app")
+        .appendChild(alert);
+
+
+    await alert.present();
 
 }
 
@@ -426,7 +627,9 @@ function scrollToBooks() {
     document
         .getElementById("books-section")
         .scrollIntoView({
+
             behavior: "smooth"
+
         });
 
 }
