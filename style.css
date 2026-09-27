@@ -1,0 +1,660 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f6eadb;
+
+    color: #42224f;
+
+    line-height: 1.6;
+}
+
+
+button,
+textarea {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+.app-header {
+
+    background: #542c67;
+
+    color: white;
+
+    padding: 20px 6%;
+
+    border-bottom: 5px solid #e87527;
+}
+
+
+.header-content {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.logo {
+    font-size: 3rem;
+}
+
+
+.app-header h1 {
+    font-size: 1.5rem;
+}
+
+
+.app-header p {
+    color: #ead7e9;
+}
+
+
+/* ==============================
+   MAIN
+============================== */
+
+main {
+
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 40px 0 70px;
+}
+
+
+section {
+    margin-bottom: 70px;
+}
+
+
+/* ==============================
+   HERO
+============================== */
+
+.hero {
+
+    background: #fff0d9;
+
+    border: 3px solid #d8bda6;
+
+    border-radius: 25px;
+
+    padding: 50px;
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+
+    align-items: center;
+
+    gap: 30px;
+
+    box-shadow:
+        0 8px 0 #dfc5a9;
+}
+
+
+.eyebrow {
+
+    color: #c65b22;
+
+    font-size: .8rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.hero h2 {
+
+    font-size:
+        clamp(2rem, 5vw, 3.5rem);
+
+    line-height: 1.1;
+
+    margin: 15px 0;
+}
+
+
+.hero h2 span {
+
+    display: block;
+
+    color: #d86622;
+}
+
+
+.hero p {
+
+    max-width: 650px;
+
+    margin-bottom: 25px;
+
+    color: #765f6d;
+}
+
+
+.hero-icon {
+
+    text-align: center;
+
+    font-size: 9rem;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.primary-button,
+.secondary-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 18px;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+
+.primary-button {
+
+    background: #d86622;
+
+    color: white;
+
+    box-shadow:
+        0 4px 0 #9c4217;
+}
+
+
+.secondary-button {
+
+    background: #542c67;
+
+    color: white;
+}
+
+
+.primary-button:hover,
+.secondary-button:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ==============================
+   HEADINGS
+============================== */
+
+.section-heading {
+
+    margin-bottom: 25px;
+}
+
+
+.section-heading span {
+
+    color: #c65b22;
+
+    font-size: .8rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 2rem;
+
+    margin: 5px 0;
+}
+
+
+.section-heading p {
+
+    color: #765f6d;
+}
+
+
+/* ==============================
+   BOOK GRID
+============================== */
+
+.book-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(230px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+
+.book-card {
+
+    background: #fff0d9;
+
+    border: 2px solid #d8bda6;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 0 #dfc5a9;
+
+    transition: .2s;
+}
+
+
+.book-card:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+
+.book-icon {
+
+    font-size: 4rem;
+
+    margin-bottom: 10px;
+}
+
+
+.book-card h3 {
+
+    color: #42224f;
+
+    margin: 8px 0;
+}
+
+
+.book-author {
+
+    color: #765f6d;
+
+    margin-bottom: 12px;
+}
+
+
+.book-description {
+
+    color: #765f6d;
+
+    margin-bottom: 18px;
+
+    font-size: .9rem;
+}
+
+
+.available-badge {
+
+    display: inline-block;
+
+    background: #dcefdc;
+
+    color: #35663b;
+
+    padding: 5px 10px;
+
+    border-radius: 10px;
+
+    font-size: .8rem;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+
+/* ==============================
+   TAKEN BOOKS
+============================== */
+
+.taken-list {
+
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.taken-card {
+
+    background: #fff0d9;
+
+    border: 2px solid #d8bda6;
+
+    border-radius: 15px;
+
+    padding: 20px;
+}
+
+
+.taken-card h3 {
+
+    margin-bottom: 5px;
+}
+
+
+.note {
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    background: #fff8ec;
+
+    border-left:
+        4px solid #d86622;
+
+    border-radius: 5px;
+}
+
+
+/* ==============================
+   MODAL
+============================== */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(40, 20, 45, .75);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+
+.modal.hidden {
+
+    display: none;
+}
+
+
+.modal-card {
+
+    background: #fff0d9;
+
+    border:
+        3px solid #d8bda6;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    width: min(500px, 100%);
+
+    position: relative;
+
+    box-shadow:
+        0 10px 0 #42224f;
+}
+
+
+.close-button {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 15px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 1.3rem;
+
+    color: #542c67;
+}
+
+
+.modal-icon {
+
+    font-size: 4rem;
+
+    text-align: center;
+}
+
+
+.modal-card h2 {
+
+    text-align: center;
+
+    margin: 10px 0;
+}
+
+
+.modal-card > p {
+
+    color: #765f6d;
+
+    margin-bottom: 15px;
+}
+
+
+.modal-card label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+.modal-card textarea {
+
+    width: 100%;
+
+    resize: vertical;
+
+    border:
+        2px solid #d8bda6;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    background: #fffaf2;
+
+    color: #42224f;
+
+    margin-bottom: 15px;
+}
+
+
+.modal-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+/* ==============================
+   SUCCESS
+============================== */
+
+.success-message {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(40, 20, 45, .75);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2000;
+
+    padding: 20px;
+}
+
+
+.success-message.hidden {
+
+    display: none;
+}
+
+
+.success-card {
+
+    background: #fff0d9;
+
+    border: 3px solid #d8bda6;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    width: min(450px, 100%);
+}
+
+
+.success-icon {
+
+    font-size: 5rem;
+}
+
+
+.success-card h2 {
+
+    margin: 10px 0;
+}
+
+
+.success-card p {
+
+    margin-bottom: 20px;
+
+    color: #765f6d;
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+
+    background: #42224f;
+
+    color: #ead7e9;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+footer small {
+
+    display: block;
+
+    margin-top: 5px;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+        padding: 35px 25px;
+
+        text-align: center;
+    }
+
+
+    .hero-icon {
+
+        font-size: 6rem;
+    }
+
+
+    .header-content {
+
+        align-items: flex-start;
+    }
+
+
+    .app-header h1 {
+
+        font-size: 1.2rem;
+    }
+
+
+    .modal-card {
+
+        padding: 30px 20px;
+    }
+
+}
