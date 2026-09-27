@@ -12,6 +12,23 @@
 
     <title>Halloween Free Book Drive</title>
 
+    <!-- Ionic Core -->
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/npm/@ionic/core@8.7.5/dist/ionic/ionic.esm.js"
+    ></script>
+
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@ionic/core@8.7.5/dist/ionic/ionic.js"
+    ></script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ionic/core@8.7.5/css/ionic.bundle.css"
+    >
+
+    <!-- Project CSS -->
     <link
         rel="stylesheet"
         href="style.css"
@@ -22,251 +39,346 @@
 
 <body>
 
-<header class="app-header">
+<!-- ==========================================
+     IONIC APP
+========================================== -->
 
-    <div class="header-content">
+<ion-app>
 
-        <div class="logo">
-            🎃
-        </div>
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
 
-        <div>
+    <ion-header class="app-header">
 
-            <h1>
-                Halloween Free Book Drive
-            </h1>
+        <ion-toolbar>
 
-            <p>
-                Take a book. Share a little magic.
-            </p>
+            <div class="header-content">
 
-        </div>
+                <div class="logo">
+                    🎃
+                </div>
 
-    </div>
+                <div>
 
-</header>
+                    <h1>
+                        Halloween Free Book Drive
+                    </h1>
+
+                    <p>
+                        Take a book. Share a little magic.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </ion-toolbar>
+
+    </ion-header>
 
 
-<main>
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
 
-    <!-- HERO -->
+    <ion-content>
 
-    <section class="hero">
+        <main>
 
-        <div>
 
-            <span class="eyebrow">
-                ✦ FREE BOOK DRIVE ✦
-            </span>
+            <!-- ==================================
+                 HERO
+            ================================== -->
 
-            <h2>
-                Find a spooky story
-                <span>to take home.</span>
-            </h2>
+            <section class="hero">
 
-            <p>
-                Choose any available book for free.
-                You may also leave a short note about
-                the book you chose.
-            </p>
+                <div>
 
-            <button
-                class="primary-button"
-                onclick="scrollToBooks()"
+                    <span class="eyebrow">
+                        ✦ FREE BOOK DRIVE ✦
+                    </span>
+
+                    <h2>
+                        Find a spooky story
+                        <span>to take home.</span>
+                    </h2>
+
+                    <p>
+                        Choose any available book for free.
+                        You may also leave a short note about
+                        the book you chose.
+                    </p>
+
+
+                    <ion-button
+                        class="primary-button"
+                        onclick="scrollToBooks()"
+                    >
+                        📚 Browse Books
+                    </ion-button>
+
+                </div>
+
+
+                <div class="hero-icon">
+                    🎃
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 BOOKS
+            ================================== -->
+
+            <section
+                id="books-section"
+                class="books-section"
             >
-                📚 Browse Books
-            </button>
 
-        </div>
+                <div class="section-heading">
 
+                    <span>
+                        ✦ AVAILABLE BOOKS
+                    </span>
 
-        <div class="hero-icon">
-            🎃
-        </div>
+                    <h2>
+                        Choose a Book
+                    </h2>
 
-    </section>
+                    <p>
+                        All books are free to take.
+                    </p>
 
-
-    <!-- BOOKS -->
-
-    <section
-        id="books-section"
-        class="books-section"
-    >
-
-        <div class="section-heading">
-
-            <span>
-                ✦ AVAILABLE BOOKS
-            </span>
-
-            <h2>
-                Choose a Book
-            </h2>
-
-            <p>
-                All books are free to take.
-            </p>
-
-        </div>
+                </div>
 
 
-        <div
-            id="book-list"
-            class="book-grid"
+                <div
+                    id="book-list"
+                    class="book-grid"
+                >
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 TAKEN BOOKS
+            ================================== -->
+
+            <section class="taken-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        ✦ YOUR BOOKS
+                    </span>
+
+                    <h2>
+                        Books You've Taken
+                    </h2>
+
+                    <p>
+                        These selections are saved on
+                        this device.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="taken-books"
+                    class="taken-list"
+                >
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 LOCAL STORAGE CONTROLS
+            ================================== -->
+
+            <section class="storage-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        ✦ LOCAL STORAGE
+                    </span>
+
+                    <h2>
+                        Saved Book Selections
+                    </h2>
+
+                    <p>
+                        Your selections and notes are
+                        stored locally in this browser.
+                    </p>
+
+                </div>
+
+
+                <ion-card class="storage-card">
+
+                    <ion-card-header>
+
+                        <ion-card-title>
+                            📦 Local Storage
+                        </ion-card-title>
+
+                        <ion-card-subtitle>
+                            No account is required.
+                        </ion-card-subtitle>
+
+                    </ion-card-header>
+
+
+                    <ion-card-content>
+
+                        <p>
+                            The application saves the books
+                            you take, your optional notes,
+                            and the date of selection using
+                            browser Local Storage.
+                        </p>
+
+
+                        <ion-button
+                            fill="outline"
+                            color="danger"
+                            onclick="clearTakenBooks()"
+                        >
+                            🗑 Clear Saved Selections
+                        </ion-button>
+
+                    </ion-card-content>
+
+                </ion-card>
+
+            </section>
+
+        </main>
+
+
+        <!-- ======================================
+             BOOK MODAL
+        ====================================== -->
+
+        <ion-modal
+            id="book-modal"
+            class="book-modal"
         >
-        </div>
 
-    </section>
+            <div class="modal-card">
 
-
-    <!-- TAKEN BOOKS -->
-
-    <section class="taken-section">
-
-        <div class="section-heading">
-
-            <span>
-                ✦ YOUR BOOKS
-            </span>
-
-            <h2>
-                Books You've Taken
-            </h2>
-
-        </div>
+                <ion-button
+                    class="close-button"
+                    fill="clear"
+                    onclick="closeModal()"
+                >
+                    ✕
+                </ion-button>
 
 
-        <div
-            id="taken-books"
-            class="taken-list"
+                <div class="modal-icon">
+                    📖
+                </div>
+
+
+                <h2 id="modal-title">
+                    Book Title
+                </h2>
+
+
+                <p id="modal-author">
+                    Author
+                </p>
+
+
+                <p id="modal-description">
+                    Description
+                </p>
+
+
+                <ion-item>
+
+                    <ion-label
+                        position="stacked"
+                    >
+                        Optional Note
+                    </ion-label>
+
+
+                    <ion-textarea
+                        id="book-note"
+                        placeholder="Write something about the book..."
+                        rows="4"
+                        auto-grow="true"
+                    >
+                    </ion-textarea>
+
+                </ion-item>
+
+
+                <div class="modal-buttons">
+
+                    <ion-button
+                        class="primary-button"
+                        onclick="takeBook()"
+                    >
+                        🎃 Take This Book
+                    </ion-button>
+
+
+                    <ion-button
+                        fill="outline"
+                        onclick="closeModal()"
+                    >
+                        Cancel
+                    </ion-button>
+
+                </div>
+
+            </div>
+
+        </ion-modal>
+
+
+        <!-- ======================================
+             SUCCESS MESSAGE
+        ====================================== -->
+
+        <ion-alert
+            id="success-message"
+            header="🎃 Book Taken!"
+            message="Enjoy your spooky read!"
+            buttons="Wonderful!"
         >
-        </div>
-
-    </section>
-
-</main>
+        </ion-alert>
 
 
-<!-- BOOK MODAL -->
-
-<div
-    id="book-modal"
-    class="modal hidden"
->
-
-    <div class="modal-card">
-
-        <button
-            class="close-button"
-            onclick="closeModal()"
-        >
-            ✕
-        </button>
+    </ion-content>
 
 
-        <div class="modal-icon">
-            📖
-        </div>
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
 
+    <footer>
 
-        <h2 id="modal-title">
-            Book Title
-        </h2>
-
-
-        <p id="modal-author">
-            Author
+        <p>
+            🎃 Halloween Free Book Drive
         </p>
 
+        <small>
+            Take a book. Leave a little magic.
+        </small>
 
-        <p id="modal-description">
-            Description
-        </p>
+    </footer>
 
-
-        <label for="book-note">
-
-            Optional Note
-
-        </label>
-
-
-        <textarea
-            id="book-note"
-            placeholder="Write something about the book..."
-            rows="4"
-        ></textarea>
-
-
-        <div class="modal-buttons">
-
-            <button
-                class="primary-button"
-                onclick="takeBook()"
-            >
-                🎃 Take This Book
-            </button>
-
-
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- SUCCESS MESSAGE -->
-
-<div
-    id="success-message"
-    class="success-message hidden"
->
-
-    <div class="success-card">
-
-        <div class="success-icon">
-            🎃
-        </div>
-
-        <h2>
-            Book Taken!
-        </h2>
-
-        <p id="success-text">
-            Enjoy your spooky read!
-        </p>
-
-        <button
-            class="primary-button"
-            onclick="closeSuccess()"
-        >
-            Wonderful!
-        </button>
-
-    </div>
-
-</div>
-
-
-<footer>
-
-    <p>
-        🎃 Halloween Free Book Drive
-    </p>
-
-    <small>
-        Take a book. Leave a little magic.
-    </small>
-
-</footer>
+</ion-app>
 
 
 <script src="app.js"></script>
