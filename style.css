@@ -753,45 +753,44 @@ ion-button {
 }
 
 
-/* ==========================================
+/* ==============================
    FOOTER
-========================================== */
+============================== */
 
 footer {
 
-    background:
-        #42224f;
+    position: static;
 
-    color:
-        #ead7e9;
+    width: 100%;
 
-    text-align:
-        center;
+    background: #42224f;
 
-    padding:
-        30px;
+    color: #ead7e9;
 
+    text-align: center;
+
+    padding: 30px;
+
+    margin-top: 40px;
 }
 
 
 footer p {
 
-    color:
-        #ead7e9;
+    color: #ead7e9;
 
+    margin: 0;
 }
 
 
 footer small {
 
-    display:
-        block;
+    display: block;
 
-    margin-top:
-        5px;
+    margin-top: 5px;
 
+    color: #ead7e9;
 }
-
 
 /* ==========================================
    MOBILE
